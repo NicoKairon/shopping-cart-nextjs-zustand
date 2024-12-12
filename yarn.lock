@@ -185,7 +185,7 @@
     wrap-ansi "^8.1.0"
     wrap-ansi-cjs "npm:wrap-ansi@^7.0.0"
 
-"@jridgewell/gen-mapping@^0.3.2", "@jridgewell/gen-mapping@^0.3.7":
+"@jridgewell/gen-mapping@^0.3.2":
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.7.tgz#724ecf7ce7bb6aca0b4bf8d15ec40fb435162ef3"
   integrity sha512-rNoqXKSm/P1EJw/lrzyaQepC6KfryLFSShA+jl1mbPYqutXlvZWwm0x03W6jMHaYJqIOmc7QarD+GVfG9hO7XQ==
