@@ -1,14 +1,11 @@
-export interface Product {
-	id: number
-	title: string
-	description: string
-	price: number
-	discountPercentage: number
-	rating: number
-	stock: number
-	brand: string
-	category: string
-	thumbnail: string
-	images: string[]
-	quantity?: number
+type Product = {
+	external_id: string;
+	id: number;
+	is_ignored: boolean;
+	name: string;
+	synced: number
+	thumbnail_url: string;
+	variants: number;
 }
+
+export type {Product}

@@ -19,6 +19,8 @@ export default function Home() {
 	const handleCartIconClick = () => {
 		setIsDrawerOpen(!isDrawerOpen)
 	}
+	const PRINTFUL_API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
+	console.log(PRINTFUL_API_KEY)
 
 	return (
 		<>
@@ -26,8 +28,8 @@ export default function Home() {
 			<Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</Drawer>
-			<main className='container mx-auto md:w-10/12 py-8 px-4'>
-				{isLoading ? <div className='text-center text-lg'>Loading...</div> : <ProductList products={products} />}
+			<main className='container px-4 py-8 mx-auto md:w-10/12'>
+				{isLoading ? <div className='text-lg text-center'>Loading...</div> : <ProductList products={products} />}
 			</main>
 		</>
 	)
