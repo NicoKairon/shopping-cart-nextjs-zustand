@@ -6,6 +6,8 @@ type Product = {
 	synced: number
 	thumbnail_url: string;
 	variants: number;
+	price: number;
+	description: string;
 }
 
 export type {Product}
