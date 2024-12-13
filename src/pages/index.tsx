@@ -7,7 +7,7 @@ import ProductList from "@/components/products/ProductList"
 
 import { useProductsStore } from "@/stores/useProductsStore"
 
-export default function Home() {
+const Home = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
 	const { products, isLoading, error, fetchData } = useProductsStore()
@@ -34,3 +34,5 @@ export default function Home() {
 		</>
 	)
 }
+
+export default Home;

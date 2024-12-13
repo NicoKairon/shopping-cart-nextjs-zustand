@@ -26,7 +26,7 @@ export const useProductsStore = create<State & Actions>(set => ({
 	fetchData: async () => {
     try {
       set({ isLoading: true, error: null });
-      const response = await axios.get("/api/products"); // Adjust to match the fixed route
+      const response = await axios.get("/api/products/fetchProducts"); // Adjust to match the fixed route
       console.log("Fetched products:", response.data.result);
       set({ products: response.data.result, isLoading: false }); // Ensure this matches Printful's response
     } catch (error) {

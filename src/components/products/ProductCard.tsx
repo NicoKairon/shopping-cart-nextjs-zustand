@@ -9,9 +9,7 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-	console.log('product', product)
-	const PRINTFUL_API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
-
+	// STORE
 	const addToCart = useCartStore(state => state.addToCart)
 
 	return (
