@@ -6,6 +6,47 @@ type Product = {
 	synced: number
 	thumbnail_url: string;
 	variants: number;
+	price: number;
+	description: string;
 }
 
-export type {Product}
+type SyncVariant = {
+	availability_status: string;
+	color: string;
+	currency: string;
+	external_id: string;
+	files: Array<{ url: string; type: string }>;
+	id: number;
+	is_ignored: boolean;
+	main_category_id: number;
+	name: string;
+	options: Array<{ name: string; value: string }>;
+	product: {
+		variant_id: number;
+		product_id: number;
+		image: string;
+		name: string;
+	};
+	retail_price: string;
+	size: string;
+	sku: string;
+	sync_product_id: number;
+	synced: boolean;
+	variant_id: number;
+	warehouse_product_id: number | null;
+	warehouse_product_variant_id: number | null;
+};
+
+type SyncProduct = {
+	external_id: string;
+	id: number;
+	is_ignored: boolean;
+	name: string;
+	synced: number;
+	thumbnail_url: string;
+	variants: number;
+	price: number;
+	description: string;
+	sync_variants: SyncVariant[];
+};
+export type {Product, SyncProduct, SyncVariant}
