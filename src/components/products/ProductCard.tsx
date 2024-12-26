@@ -1,15 +1,39 @@
 import Image from "next/image"
-
+import { useState, useEffect } from "react"
 import { useCartStore } from "../../stores/useCartStore"
+import { Product, SyncProduct, SyncVariant } from "@/types.d"
+import axios from "axios"
 
-import { Product } from "@/types.d"
-
-interface Props {
+type Props = {
 	product: Product
 }
 
-export default function ProductCard({ product }: Props) {
-	// STORE
+type ProductDetails = {
+	sync_product: SyncProduct;
+	sync_variants: SyncVariant[];
+}
+
+const ProductCard = ({ product }: Props) =>{
+	const [productDetails, setProductDetails] = useState<ProductDetails>()
+	console.log('productDetails:', productDetails)
+
+	const syncProduct: SyncVariant = productDetails?.sync_variants[0]
+	console.log('syncProduct:', syncProduct)
+
+
+	const fetchProductDetails = async (id: number) => {
+		try {
+			const response = await axios.get(`/api/products/${id}`)
+			setProductDetails(response.data.result)
+		} catch (error) {
+			console.error("Error fetching product details:", error)
+		}
+	}
+
+	useEffect(() => {
+		fetchProductDetails(product.id)
+	}, [product.id])
+
 	const addToCart = useCartStore(state => state.addToCart)
 
 	return (
@@ -23,13 +47,17 @@ export default function ProductCard({ product }: Props) {
 			/>
 			<div className='flex flex-col justify-between flex-1'>
 				<h2 className='text-lg font-semibold'>{product.name}</h2>
-				<p className='flex-1 text-gray-600'>{product.name}</p>
+					{productDetails && (
+						<>
+							<p className='text-gray-600'>{syncProduct.product.name}</p>
+							<span className='font-semibold text-gray-800'>${syncProduct.retail_price}</span>
+						</>
+					)}
 				<div className='flex items-center justify-between mt-4'>
-					{/* <span className='font-semibold text-gray-800'>${product}</span> */}
 					<button
 						type='button'
 						className='px-4 py-2 ml-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600'
-						onClick={() => addToCart(product)}
+						onClick={() => addToCart({ ...product, ...productDetails })}
 					>
 						Add to Cart
 					</button>
@@ -38,3 +66,5 @@ export default function ProductCard({ product }: Props) {
 		</div>
 	)
 }
+
+export default ProductCard;
