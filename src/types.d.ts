@@ -8,6 +8,12 @@ type Product = {
 	variants: number;
 	price: number;
 	description: string;
+	quantity: number;
+}
+
+type ProductDetails = {
+	sync_product: SyncProduct;
+	sync_variants: SyncVariant[];
 }
 
 type SyncVariant = {
@@ -49,4 +55,4 @@ type SyncProduct = {
 	description: string;
 	sync_variants: SyncVariant[];
 };
-export type {Product, SyncProduct, SyncVariant}
+export type {Product, ProductDetails, SyncProduct, SyncVariant}

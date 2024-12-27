@@ -1,25 +1,19 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { useCartStore } from "../../stores/useCartStore"
-import { Product, SyncProduct, SyncVariant } from "@/types.d"
+import { Product, ProductDetails, SyncProduct, SyncVariant } from "@/types.d"
 import axios from "axios"
 
 type Props = {
 	product: Product
 }
 
-type ProductDetails = {
-	sync_product: SyncProduct;
-	sync_variants: SyncVariant[];
-}
+
 
 const ProductCard = ({ product }: Props) =>{
 	const [productDetails, setProductDetails] = useState<ProductDetails>()
-	console.log('productDetails:', productDetails)
 
 	const syncProduct: SyncVariant = productDetails?.sync_variants[0]
-	console.log('syncProduct:', syncProduct)
-
 
 	const fetchProductDetails = async (id: number) => {
 		try {
@@ -44,13 +38,14 @@ const ProductCard = ({ product }: Props) =>{
 				width={100}
 				height={100}
 				className='object-contain w-full h-40'
+				priority
 			/>
 			<div className='flex flex-col justify-between flex-1'>
 				<h2 className='text-lg font-semibold'>{product.name}</h2>
 					{productDetails && (
 						<>
 							<p className='text-gray-600'>{syncProduct.product.name}</p>
-							<span className='font-semibold text-gray-800'>${syncProduct.retail_price}</span>
+							<span className='font-semibold text-gray-800'>{syncProduct.currency} {syncProduct.retail_price}</span>
 						</>
 					)}
 				<div className='flex items-center justify-between mt-4'>
