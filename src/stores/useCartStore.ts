@@ -12,6 +12,7 @@ interface State {
 interface Actions {
 	addToCart: (Item: Product) => void
 	removeFromCart: (Item: Product) => void
+	updateQuantity: (productId: number, quantity: number) => void
 }
 
 const INITIAL_STATE: State = {
@@ -56,6 +57,13 @@ export const useCartStore = create(
 					totalPrice: state.totalPrice - product.price,
 				}))
 			},
+			updateQuantity: (productId, quantity) => {
+				set(state => ({
+					cart: state.cart.map(item =>
+						item.id === productId ? { ...item, quantity } : item
+					)
+				}))
+			}
 		}),
 		{
 			name: "cart-storage",
