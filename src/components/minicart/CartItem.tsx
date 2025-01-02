@@ -8,7 +8,6 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ product }) => {
-	console.log('product:', product)
 	const syncVariant = product.sync_variants[0]
 	const syncProduct = product.sync_product
 	const removeFromCart = useCartStore(state => state.removeFromCart)

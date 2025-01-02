@@ -6,16 +6,13 @@ import useFromStore from "../../hooks/useFromStore"
 
 const Cart = () => {
 	const cart = useFromStore(useCartStore, state => state.cart)
-	console.log('cart:', cart)
 
 	let total = 0
 	if (cart) {
 		total = cart.reduce((acc, product) => {
-			console.log('Product:', product);
 			const variant = product.sync_variants[0];
 			const price = typeof variant.retail_price === 'number' ? variant.retail_price : parseFloat(variant.retail_price);
 			const quantity = typeof product.quantity === 'number' ? product.quantity : parseFloat(product.quantity);
-			console.log(`Calculating: ${price} * ${quantity}`);
 			return acc + (isNaN(price) || isNaN(quantity) ? 0 : price * quantity);
 		}, 0)
 	}
