@@ -1,14 +1,23 @@
-type Product = {
-	external_id: string;
+export interface Product {
 	id: number;
+	price: number;
+	quantity: number;
+	sync_variants: Array<{
+		currency: string;
+		retail_price: number;
+		// Add any other properties that are part of the sync_variant
+	}>;
+	sync_product: {
+		thumbnail_url: string;
+		name: string;
+		// Add any other properties that are part of the sync_product
+	};
+	external_id: string;
 	is_ignored: boolean;
 	name: string;
-	synced: number
+	synced: boolean;
 	thumbnail_url: string;
-	variants: number;
-	price: number;
-	description: string;
-	quantity: number;
+	// Add any other properties that are part of the Product type
 }
 
 type ProductDetails = {
@@ -33,7 +42,7 @@ type SyncVariant = {
 		image: string;
 		name: string;
 	};
-	retail_price: string;
+	retail_price: number;
 	size: string;
 	sku: string;
 	sync_product_id: number;
@@ -55,4 +64,5 @@ type SyncProduct = {
 	description: string;
 	sync_variants: SyncVariant[];
 };
-export type {Product, ProductDetails, SyncProduct, SyncVariant}
+
+export type { Product, ProductDetails, SyncProduct, SyncVariant }

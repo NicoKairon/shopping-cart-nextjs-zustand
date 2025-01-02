@@ -1,14 +1,13 @@
 import { FaTrashAlt } from "react-icons/fa"
-
-import { Product, ProductDetails } from "../../types.d"
 import Image from "next/image"
 import { useCartStore } from "../../stores/useCartStore"
+import { Product } from "../../types.d"
 
-type Props = {
-	product: ProductDetails
+interface CartItemProps {
+	product: Product;
 }
 
-const CartItem = ({ product }: Props) => {
+const CartItem: React.FC<CartItemProps> = ({ product }) => {
 	console.log('product:', product)
 	const syncVariant = product.sync_variants[0]
 	const syncProduct = product.sync_product

@@ -13,12 +13,24 @@ type Props = {
 const ProductCard = ({ product }: Props) =>{
 	const [productDetails, setProductDetails] = useState<ProductDetails>()
 
-	const syncProduct: SyncVariant = productDetails?.sync_variants[0]
+	const syncProduct: SyncVariant | undefined = productDetails?.sync_variants[0]
 
 	const fetchProductDetails = async (id: number) => {
 		try {
 			const response = await axios.get(`/api/products/${id}`)
-			setProductDetails(response.data.result)
+			const productDetails = response.data.result
+
+			// Convert retail_price to number if it's a string
+			if (productDetails.sync_variants) {
+				productDetails.sync_variants = productDetails.sync_variants.map((variant: SyncVariant) => ({
+					...variant,
+					retail_price: typeof variant.retail_price === 'string'
+						? parseFloat(variant.retail_price)
+						: variant.retail_price // Ensure conversion to number
+				}))
+			}
+
+			setProductDetails(productDetails)
 		} catch (error) {
 			console.error("Error fetching product details:", error)
 		}
@@ -42,7 +54,7 @@ const ProductCard = ({ product }: Props) =>{
 			/>
 			<div className='flex flex-col justify-between flex-1'>
 				<h2 className='text-lg font-semibold'>{product.name}</h2>
-					{productDetails && (
+					{syncProduct && (
 						<>
 							<p className='text-gray-600'>{syncProduct.product.name}</p>
 							<span className='font-semibold text-gray-800'>{syncProduct.currency} {syncProduct.retail_price}</span>
