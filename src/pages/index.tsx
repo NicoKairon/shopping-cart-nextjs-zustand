@@ -6,6 +6,7 @@ import Cart from "@/components/minicart/Cart"
 import ProductList from "@/components/products/ProductList"
 
 import { useProductsStore } from "@/stores/useProductsStore"
+import NavBar from "@/components/ui/NavBar"
 
 const Home = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -24,7 +25,8 @@ const Home = () => {
 
 	return (
 		<>
-			<Header onCartIconClick={handleCartIconClick} />
+			{/* <Header onCartIconClick={handleCartIconClick} /> */}
+			<NavBar />
 			<Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</Drawer>

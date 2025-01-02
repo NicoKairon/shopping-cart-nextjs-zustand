@@ -43,27 +43,27 @@ const ProductCard = ({ product }: Props) =>{
 	const addToCart = useCartStore(state => state.addToCart)
 
 	return (
-		<div className='flex flex-col justify-between p-4 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl '>
+		<div className='flex flex-col justify-between p-4 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl group'>
 			<Image
 				src={product.thumbnail_url}
 				alt={product.name}
-				width={100}
-				height={100}
-				className='object-contain w-full h-40'
+				width={300}
+				height={300}
+				className='object-contain w-full h-60 group-hover:opacity-75'
 				priority
 			/>
-			<div className='flex flex-col justify-between flex-1'>
-				<h2 className='text-lg font-semibold'>{product.name}</h2>
-					{syncProduct && (
-						<>
-							<p className='text-gray-600'>{syncProduct.product.name}</p>
-							<span className='font-semibold text-gray-800'>{syncProduct.currency} {syncProduct.retail_price}</span>
-						</>
-					)}
+			<div className='flex flex-col justify-between flex-1 mt-4'>
+				<h2 className='text-lg font-semibold mb-2'>{product.name}</h2>
+				{syncProduct && (
+					<>
+						<p className='text-gray-600'>{syncProduct.product.name}</p>
+						<span className='font-semibold text-gray-800'>{syncProduct.currency} {syncProduct.retail_price}</span>
+					</>
+				)}
 				<div className='flex items-center justify-between mt-4'>
 					<button
 						type='button'
-						className='px-4 py-2 ml-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600'
+						className='px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 group-hover:bg-blue-700'
 						onClick={() => addToCart({ ...product, ...productDetails })}
 					>
 						Add to Cart
