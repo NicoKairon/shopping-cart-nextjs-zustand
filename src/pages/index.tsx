@@ -30,7 +30,7 @@ const Home = () => {
 			<Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</Drawer>
-			<main className='container px-4 py-8 mx-auto md:w-10/12'>
+			<main className='px-6 py-8 mx-auto'>
 				{isLoading ? <div className='text-lg text-center'>Loading...</div> : <ProductList products={products} />}
 			</main>
 		</>
