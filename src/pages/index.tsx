@@ -25,8 +25,7 @@ const Home = () => {
 
 	return (
 		<>
-			{/* <Header onCartIconClick={handleCartIconClick} /> */}
-			<NavBar />
+			<NavBar onCartIconClick={handleCartIconClick} />
 			<Drawer isOpen={isDrawerOpen} onCartIconClick={handleCartIconClick}>
 				<Cart />
 			</Drawer>

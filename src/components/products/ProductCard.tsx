@@ -12,9 +12,18 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+	// STATE
 	const [productDetails, setProductDetails] = useState<ProductDetails>()
-	const syncProduct: SyncVariant | undefined = productDetails?.sync_variants[0]
 
+	// STORE
+	const addToCart = useCartStore(state => state.addToCart)
+
+	// EFFECTS
+	useEffect(() => {
+		fetchProductDetails(product.id)
+	}, [product.id])
+
+	// METHODS
 	const fetchProductDetails = async (id: number) => {
 		try {
 			const response = await axios.get(`/api/products/${id}`)
@@ -24,8 +33,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
 				productDetails.sync_variants = productDetails.sync_variants.map((variant: SyncVariant) => ({
 					...variant,
 					retail_price: typeof variant.retail_price === 'string'
-						? parseFloat(variant.retail_price)
-						: variant.retail_price
+					? parseFloat(variant.retail_price)
+					: variant.retail_price
 				}))
 			}
 
@@ -35,11 +44,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
 		}
 	}
 
-	useEffect(() => {
-		fetchProductDetails(product.id)
-	}, [product.id])
-
-	const addToCart = useCartStore(state => state.addToCart)
+	// VARS
+	const syncProduct: SyncVariant | undefined = productDetails?.sync_variants[0]
 
 	return (
 		<div className="relative group">
@@ -51,7 +57,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
 					className="object-cover"
 					sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
 				/>
-				<div className="absolute inset-0 flex flex-col items-center justify-center gap-4 transition-opacity opacity-0 bg-white/60 group-hover:opacity-100">
+				<div className="absolute inset-0 flex flex-col items-center justify-end gap-4 transition-opacity opacity-0 bg-white/60 group-hover:opacity-100">
+				{/* <div className="flex gap-2">
+						{product.sizes.map((size) => (
+							<Button
+								key={size}
+								variant="outline"
+								size="sm"
+								className={`h-8 w-8 p-0 bg-white hover:bg-white ${
+									selectedSize === size ? 'bg-[#02052D] text-white hover:bg-[#02052D]' : ''
+								}`}
+								onClick={() => setSelectedSize(size)}
+							>
+								{size}
+							</Button>
+						))}
+					</div> */}
 					<Button
 						variant="default"
 						size="lg"
@@ -66,9 +87,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 				<h3 className="text-sm font-medium">{product.name}</h3>
 				{syncProduct && (
 					<div className="flex gap-2 mt-1">
-						<span className="text-sm text-gray-500 line-through">
+						{/* <span className="text-sm text-gray-500 line-through">
 							{syncProduct.currency}{syncProduct.retail_price.toFixed(2)}
-						</span>
+						</span> */}
 						<span className="text-sm font-medium text-red-600">
 							{syncProduct.currency}{syncProduct.retail_price.toFixed(2)}
 						</span>

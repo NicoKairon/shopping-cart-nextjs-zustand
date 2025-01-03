@@ -16,8 +16,16 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
+import { FiShoppingCart } from "react-icons/fi"
+import { useCartStore } from "../../stores/useCartStore"
 
-const NavBar = () => {
+interface Props {
+  onCartIconClick: () => void
+}
+
+const NavBar = ({ onCartIconClick }: Props) => {
+  const cart = useCartStore(state => state.cart)
+
   return (
     <nav className="flex items-center justify-between h-16 px-4 border-b lg:px-6">
       <div className="flex items-center">
@@ -108,13 +116,15 @@ const NavBar = () => {
           <span className="sr-only">Account</span>
         </Button>
 
-        <Button variant="ghost" size="icon" className="relative">
-          <ShoppingBag className="w-5 h-5" />
-          <span className="sr-only">Shopping cart</span>
-          <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 -mt-1 -mr-1 text-xs text-white bg-black rounded-full">
-            0
-          </span>
-        </Button>
+        <button
+          type='button'
+          title='Mini Cart'
+          className='flex items-center text-xl'
+          onClick={onCartIconClick}
+        >
+          <FiShoppingCart />
+          <div className='w-4 h-4 -mt-4 -ml-1 text-xs text-white bg-blue-700 rounded-full'>{cart?.length}</div>
+        </button>
       </div>
     </nav>
   )
