@@ -8,7 +8,7 @@ import { useCartStore } from "../../stores/useCartStore"
 import { Product, ProductDetails, SyncVariant } from "@/types.d"
 import axios from "axios"
 
-interface ProductCardProps {
+type ProductCardProps = {
 	product: Product
 }
 

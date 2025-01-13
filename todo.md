@@ -1,3 +1,11 @@
 # TO DO
 - change icons to hero icons
 - add down arrow icon to dropdown
+- add stripe checkout
+- add product page
+- add product detail page
+- add cart page
+- add checkout page
+- add order confirmation page
+- add payment success page
+- add payment failed page

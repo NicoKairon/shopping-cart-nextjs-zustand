@@ -3,13 +3,13 @@ import { persist } from "zustand/middleware"
 
 import { Product } from "../types"
 
-interface State {
+type State = {
 	cart: Product[]
 	totalItems: number
 	totalPrice: number
 }
 
-interface Actions {
+type Actions = {
 	addToCart: (Item: Product) => void
 	removeFromCart: (Item: Product) => void
 	updateQuantity: (productId: number, quantity: number) => void
