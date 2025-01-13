@@ -1,9 +1,10 @@
+import React from "react"
 import { FaTrashAlt } from "react-icons/fa"
 import Image from "next/image"
 import { useCartStore } from "../../stores/useCartStore"
 import { Product } from "../../types.d"
 
-interface CartItemProps {
+type CartItemProps = {
 	product: Product;
 }
 

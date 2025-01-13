@@ -1,3 +1,4 @@
+import React from "react"
 import CartItem from "./CartItem"
 
 import { useCartStore } from "../../stores/useCartStore"

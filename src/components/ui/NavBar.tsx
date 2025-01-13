@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import Link from "next/link"
 import { Menu, Search, User, ShoppingBag } from 'lucide-react'
 import {
@@ -16,7 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { FiShoppingCart } from "react-icons/fi"
+
 import { useCartStore } from "../../stores/useCartStore"
 
 interface Props {
@@ -122,7 +123,7 @@ const NavBar = ({ onCartIconClick }: Props) => {
           className='flex items-center text-xl'
           onClick={onCartIconClick}
         >
-          <FiShoppingCart />
+          <ShoppingBag />
           <div className='w-4 h-4 -mt-4 -ml-1 text-xs text-white bg-blue-700 rounded-full'>{cart?.length}</div>
         </button>
       </div>

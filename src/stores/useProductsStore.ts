@@ -3,13 +3,13 @@ import { create } from "zustand"
 import { Product } from "../types"
 import axios from "axios"
 
-interface State {
+type State = {
 	products: Product[]
 	isLoading: boolean
-	error: any
+	error: unknown
 }
 
-interface Actions {
+type Actions = {
 	fetchData: () => Promise<void>
 }
 

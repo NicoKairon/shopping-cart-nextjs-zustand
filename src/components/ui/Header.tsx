@@ -1,3 +1,4 @@
+import React from "react"
 import { FiShoppingCart } from "react-icons/fi"
 
 import { useCartStore } from "../../stores/useCartStore"

@@ -22,10 +22,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     res.status(200).json(response.data); // Respond with the data structure as-is
-  } catch (error: any) {
-    console.error("Error fetching product:", error.message);
-    res
-      .status(error.response?.status || 500)
-      .json(error.response?.data || { error: "Internal Server Error" });
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error fetching product:", error.message);
+      res
+        .status(error.response?.status || 500)
+        .json(error.response?.data || { error: "Internal Server Error" });
+    } else {
+      console.error("Unexpected error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 }

@@ -1,9 +1,10 @@
 import { Button } from "../ui/button"
 import ProductCard from "./ProductCard"
+import React from "react"
 
 import { Product } from "@/types.d"
 
-interface Props {
+type Props = {
 	products: Product[]
 }
 
