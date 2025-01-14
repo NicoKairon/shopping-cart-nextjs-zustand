@@ -6,7 +6,6 @@ import { X } from 'lucide-react'
 import {
 	Sheet,
 	SheetContent,
-	SheetHeader,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -36,21 +35,10 @@ const CartDrawer = (props: CartDrawerProps) => {
 	return (
 		<Sheet open={open} onOpenChange={onClose}>
 			<SheetContent className="w-full sm:max-w-md">
-				<SheetHeader className="flex justify-end">
-					<Button
-						variant="ghost"
-						size="icon"
-						className="rounded-full"
-						onClick={onClose}
-					>
-						<X className="w-4 h-4" />
-						<span className="sr-only">Close cart</span>
-					</Button>
-				</SheetHeader>
 				<ScrollArea className="h-[calc(100vh-12rem)] pr-4">
 					{cart.map((product) => (
 						<div key={product.id} className="flex gap-4 py-4">
-							<div className="relative w-20 h-20 overflow-hidden bg-gray-100 rounded aspect-square">
+							<div className="relative w-32 h-32 overflow-hidden bg-gray-100 rounded aspect-square">
 								<Image
 									src={product.sync_product.thumbnail_url}
 									alt={product.sync_product.name}
@@ -58,7 +46,7 @@ const CartDrawer = (props: CartDrawerProps) => {
 									className="object-cover"
 								/>
 							</div>
-							<div className="flex flex-col justify-center flex-1">
+							<div className="flex flex-col justify-between flex-1 py-4">
 								<div className="flex items-start justify-between">
 									<div>
 										<h3 className="text-sm font-medium">
@@ -66,19 +54,21 @@ const CartDrawer = (props: CartDrawerProps) => {
 										</h3>
 										<p className="mt-1 text-sm text-gray-500">{product.sync_variants[0].size || "Default Size"}</p>
 									</div>
+								</div>
+								<div className="flex items-center justify-between">
 									<p className="text-sm font-medium">
 										{product.sync_variants[0].currency}{(product.sync_variants[0].retail_price * product.quantity).toFixed(2)}
 									</p>
+									<Button
+										variant="ghost"
+										size="icon"
+										className="rounded-full"
+										onClick={() => removeFromCart(product)}
+									>
+										<X className="w-4 h-4" />
+										<span className="sr-only">Remove {product.sync_product.name}</span>
+									</Button>
 								</div>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="absolute right-0 rounded-full"
-									onClick={() => removeFromCart(product)}
-								>
-									<X className="w-4 h-4" />
-									<span className="sr-only">Remove {product.sync_product.name}</span>
-								</Button>
 							</div>
 						</div>
 					))}
