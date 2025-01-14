@@ -5,6 +5,7 @@ export type Product = {
 	sync_variants: Array<{
 		currency: string;
 		retail_price: number;
+		size: string;
 		// Add any other properties that are part of the sync_variant
 	}>;
 	sync_product: {

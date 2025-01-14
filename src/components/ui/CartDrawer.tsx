@@ -13,14 +13,13 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useCartStore } from "../../stores/useCartStore"
 
 type CartDrawerProps = {
-	onRemove?: (id: string) => void;
 	onClose?: () => void;
 	open?: boolean;
 };
 
 const CartDrawer = (props: CartDrawerProps) => {
 	// PROPS
-	const { onRemove = () => {}, onClose = () => {}, open = false } = props
+	const { onClose = () => {}, open = false } = props
 
 	// STORE
 	const cart = useCartStore(state => state.cart)
