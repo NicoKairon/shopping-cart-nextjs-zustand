@@ -24,6 +24,7 @@ const CartDrawer = (props: CartDrawerProps) => {
 
 	// STORE
 	const cart = useCartStore(state => state.cart)
+	const removeFromCart = useCartStore(state => state.removeFromCart)
 
 	// METHODS
 	const subtotal = cart.reduce((total, product) => {
@@ -32,7 +33,6 @@ const CartDrawer = (props: CartDrawerProps) => {
 		const quantity = typeof product.quantity === 'number' ? product.quantity : parseFloat(product.quantity);
 		return total + (isNaN(price) || isNaN(quantity) ? 0 : price * quantity);
 	}, 0)
-	console.log('cart', cart)
 
 	return (
 		<Sheet open={open} onOpenChange={onClose}>
@@ -75,7 +75,7 @@ const CartDrawer = (props: CartDrawerProps) => {
 									variant="ghost"
 									size="icon"
 									className="absolute right-0 rounded-full"
-									onClick={() => onRemove(product.sync_product.id)}
+									onClick={() => removeFromCart(product)}
 								>
 									<X className="w-4 h-4" />
 									<span className="sr-only">Remove {product.sync_product.name}</span>
