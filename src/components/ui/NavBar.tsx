@@ -2,7 +2,6 @@
 
 import React from "react"
 import Link from "next/link"
-import { Menu, Search, User, ShoppingBag } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +16,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-
+import { Bars3Icon, MagnifyingGlassIcon, UserIcon, ShoppingBagIcon } from "@heroicons/react/24/outline"
 import { useCartStore } from "../../stores/useCartStore"
 
 interface Props {
@@ -33,7 +32,7 @@ const NavBar = ({ onCartIconClick }: Props) => {
         <Sheet>
           <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon" className="mr-4">
-              <Menu className="w-6 h-6" />
+              <Bars3Icon className="w-6 h-6" />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
@@ -108,12 +107,12 @@ const NavBar = ({ onCartIconClick }: Props) => {
         </DropdownMenu>
 
         <Button variant="ghost" size="icon" className="hidden lg:inline-flex">
-          <Search className="w-5 h-5" />
+          <MagnifyingGlassIcon className="w-5 h-5" />
           <span className="sr-only">Search</span>
         </Button>
 
         <Button variant="ghost" size="icon">
-          <User className="w-5 h-5" />
+          <UserIcon className="w-5 h-5" />
           <span className="sr-only">Account</span>
         </Button>
 
@@ -123,7 +122,7 @@ const NavBar = ({ onCartIconClick }: Props) => {
           className='flex items-center text-xl'
           onClick={onCartIconClick}
         >
-          <ShoppingBag />
+          <ShoppingBagIcon className="w-5 h-5" />
           <div className='w-4 h-4 -mt-4 -ml-1 text-xs text-white bg-blue-700 rounded-full'>{cart?.length}</div>
         </button>
       </div>

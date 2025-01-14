@@ -1,7 +1,7 @@
 # TO DO
 [x] fix type for product, sync_product, sync_variants make sure it works in CartDrawer
 [x] fix remove
-[] correct the cart drawer X buttons
+[x] correct the cart drawer X buttons
 [] add variants in ProductsList
 
 

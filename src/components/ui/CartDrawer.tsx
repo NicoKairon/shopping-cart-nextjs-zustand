@@ -2,7 +2,6 @@
 
 import React from "react"
 import Image from "next/image"
-import { X } from 'lucide-react'
 import {
 	Sheet,
 	SheetContent,
@@ -10,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useCartStore } from "../../stores/useCartStore"
+import { XMarkIcon } from "@heroicons/react/24/outline"
 
 type CartDrawerProps = {
 	onClose?: () => void;
@@ -65,7 +65,7 @@ const CartDrawer = (props: CartDrawerProps) => {
 										className="rounded-full"
 										onClick={() => removeFromCart(product)}
 									>
-										<X className="w-4 h-4" />
+										<XMarkIcon className="w-5 h-5" />
 										<span className="sr-only">Remove {product.sync_product.name}</span>
 									</Button>
 								</div>
